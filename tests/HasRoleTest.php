@@ -31,7 +31,7 @@ class HasRoleTest extends PHPUnit_Framework_TestCase {
 
 class Config
 {
-    public function get($key = '') {
+    static public function get($key = '') {
         return false;
     }
 }
