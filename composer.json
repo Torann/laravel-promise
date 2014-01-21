@@ -1,0 +1,31 @@
+{
+    "name": "torann/promise",
+    "description": "Simple Roles and Permissions for Laravel 4.",
+    "keywords": ["laravel", "promise", "roles", "permissions", "group", "user"],
+	"license": "BSD 2-Clause",
+    "authors": [
+        {
+            "name": "Daniel Stainback",
+            "email": "daniel@lyften.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "illuminate/support": "4.1.x"
+    },
+    "require-dev": {
+        "illuminate/database": "4.x",
+        "mockery/mockery": "0.7.2"
+    },
+    "autoload": {
+        "psr-0": {
+            "Torann\\Promise": "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1-dev"
+        }
+    },
+    "minimum-stability": "dev"
+}
