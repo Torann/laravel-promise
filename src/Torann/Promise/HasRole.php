@@ -1,5 +1,7 @@
 <?php namespace Torann\Promise;
 
+use Config;
+
 trait HasRole
 {
     /**
@@ -75,7 +77,7 @@ trait HasRole
         foreach ($this->roles as $role)
         {
             // Return true for super admin
-            if ($role->name === \Config::get('promise::super_admin')) {
+            if ($role->name === Config::get('promise::super_admin')) {
                 return true;
             }
 

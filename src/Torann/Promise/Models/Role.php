@@ -1,5 +1,7 @@
 <?php namespace Torann\Promise\Models;
 
+use Config;
+
 class Role extends \Eloquent
 {
     /**
@@ -24,7 +26,7 @@ class Role extends \Eloquent
     public function users()
     {
         return $this->belongsToMany(
-            'Torann\Promise\Models\User',
+            Config::get('promise::user_model'),
             'role_user'
         )->withTimestamps();
     }
