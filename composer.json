@@ -11,10 +11,10 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "illuminate/support": "4.1.x"
+        "illuminate/support": "~4.1"
     },
     "require-dev": {
-        "illuminate/database": "4.x",
+        "illuminate/database": "~4.1",
         "mockery/mockery": "0.7.2"
     },
     "autoload": {
