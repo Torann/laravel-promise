@@ -12,6 +12,13 @@ class Role extends \Eloquent
     protected $table = 'roles';
 
     /**
+     * The relations to eager load on every query.
+     *
+     * @var array
+     */
+    protected $with = ['permissions'];
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -28,7 +35,7 @@ class Role extends \Eloquent
         return $this->belongsToMany(
             Config::get('promise::user_model'),
             'role_user'
-        )->withTimestamps();
+        );
     }
 
     /**
@@ -41,36 +48,31 @@ class Role extends \Eloquent
         return $this->belongsToMany(
             'Torann\Promise\Models\Permission',
             'permission_role'
-        )->withTimestamps();
+        );
     }
 
     /**
      * Does the role have a specific permission
      *
-     * @param  array|string $permissions Single permission or an array of permissions
+     * @param  array|string $perms Single permission or an array of permissions
      *
      * @return boolean
      */
-    public function has($permissions)
+    public function has($perms)
     {
-        $permissions = !is_array($permissions)
-            ? array($permissions)
-            : $permissions;
+        $perms = !is_array($perms)
+            ? array($perms)
+            : $perms;
 
-        $valid = false;
+        // Roles permissions list
+        $permissions = $this->permissions->lists('name');
 
-        foreach (static::permissions()->get() as $permission)
+        // Check for permission
+        foreach ($perms as $perm)
         {
-            foreach ($permissions as $perm_to_check)
-            {
-                if($permission->name == $perm_to_check)
-                {
-                    $valid = true;
-                    break 1;
-                }
-            }
+            return in_array($perm, $permissions);
         }
 
-        return $valid;
+        return false;
     }
 }
