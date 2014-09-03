@@ -40,7 +40,11 @@ trait HasRole
      */
     public function revokeRole( $name )
     {
-        return $this->roles()->whereName($name)->detach();
+        $role = \Torann\Promise\Models\Role::whereName($name)->first();
+
+        if ($role == null) throw new ModelNotFoundException;
+
+        return $this->roles()->detach($role);
     }
 
     /**
