@@ -59,6 +59,11 @@ trait HasRole
 
         foreach ($this->roles as $role)
         {
+            // Return true for super admin
+            if ($role->name === Config::get('promise::super_admin')) {
+                return true;
+            }
+
             if(in_array($role->name, $roles))
             {
                 return true;
