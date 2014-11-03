@@ -20,7 +20,10 @@
     "autoload": {
         "psr-0": {
             "Torann\\Promise": "src/"
-        }
+        },
+        "files": [
+            "src/helpers.php"
+        ]
     },
     "extra": {
         "branch-alias": {
