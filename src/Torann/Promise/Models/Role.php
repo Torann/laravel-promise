@@ -70,7 +70,10 @@ class Role extends \Eloquent
         // Check for permission
         foreach ($perms as $perm)
         {
-            return in_array($perm, $permissions);
+            if (in_array($perm, $permissions))
+            {
+                return true;
+            }
         }
 
         return false;
