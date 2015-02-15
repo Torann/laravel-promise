@@ -1,8 +1,8 @@
-# Promise fo Laravel 5
+# Promise for Laravel 5
 
 [![Latest Stable Version](https://poser.pugx.org/torann/promise/v/stable.png)](https://packagist.org/packages/torann/promise) [![Total Downloads](https://poser.pugx.org/torann/promise/downloads.png)](https://packagist.org/packages/torann/promise) [![Build Status](https://api.travis-ci.org/Torann/laravel-promise.png)](http://travis-ci.org/Torann/laravel-promise)
 
-Simple Roles and Permissions for Laravel 5.
+Simple Roles and Permissions for Laravel 5. [Homepage](http://lyften.com/projects/laravel-promise/)
 
 ----------
 
