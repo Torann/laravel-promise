@@ -18,7 +18,13 @@ class PromiseServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$this->package('torann/promise');
+        $this->publishes([
+            __DIR__.'/../../config/promise.php' => config_path('promise.php'),
+        ]);
+
+        $this->publishes([
+            __DIR__ . '/../../migrations/' => base_path('/database/migrations')
+        ], 'migrations');
 	}
 
     /**

@@ -23,7 +23,7 @@ class Role extends \Eloquent
      *
      * @var array
      */
-    protected $fillable = array('name', 'description', 'level');
+    protected $fillable = array('name', 'description');
 
     /**
      * Users
@@ -33,7 +33,7 @@ class Role extends \Eloquent
     public function users()
     {
         return $this->belongsToMany(
-            Config::get('promise::user_model'),
+            Config::get('promise.user_model'),
             'role_user'
         );
     }
@@ -58,7 +58,7 @@ class Role extends \Eloquent
      *
      * @return boolean
      */
-    public function has($perms)
+    public function hasPerm($perms)
     {
         $perms = !is_array($perms)
             ? array($perms)

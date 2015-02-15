@@ -1,8 +1,8 @@
-# Promise fo Laravel 4 - Alpha
+# Promise fo Laravel 5
 
 [![Latest Stable Version](https://poser.pugx.org/torann/promise/v/stable.png)](https://packagist.org/packages/torann/promise) [![Total Downloads](https://poser.pugx.org/torann/promise/downloads.png)](https://packagist.org/packages/torann/promise) [![Build Status](https://api.travis-ci.org/Torann/laravel-promise.png)](http://travis-ci.org/Torann/laravel-promise)
 
-Simple Roles and Permissions for Laravel 4.
+Simple Roles and Permissions for Laravel 5.
 
 ----------
 
@@ -10,16 +10,17 @@ Simple Roles and Permissions for Laravel 4.
 
 - [Promise on Packagist](https://packagist.org/packages/torann/promise)
 - [Promise on GitHub](https://github.com/torann/laravel-promise)
+- [Laravel 4 Installation](https://github.com/Torann/laravel-promise/tree/0.1.1)
 
 To get the latest version of Promise simply require it in your `composer.json` file.
 
 ~~~
-"torann/promise": "dev-master"
+"torann/promise": "0.2.*@dev"
 ~~~
 
 You'll then need to run `composer install` to download it and have the autoloader updated.
 
-Once Promise is installed you need to register the service provider with the application. Open up `app/config/app.php` and find the `providers` key.
+Once Promise is installed you need to register the service provider with the application. Open up `config/app.php` and find the `providers` key.
 
 ~~~php
 'providers' => array(
@@ -29,30 +30,38 @@ Once Promise is installed you need to register the service provider with the app
 )
 ~~~
 
-### Publish the config
+### Publish the configurations and migration
 
 Run this on the command line from the root of your project:
 
-	$ php artisan config:publish torann/promise
+~~~
+$ php artisan vendor:publish
+~~~
 
-This will publish Promise's config to ``app/config/packages/torann/promise/``.
+A configuration file will be publish to `config/promise.php` and a migration file to `database/migrations/`
 
-### Migration
+## Documentation
 
-Now migrate the database tables for Promise. Run this on the command line from the root of your project:
-
-	$ php artisan migrate --package=torann/promise
+[Homepage](http://lyften.com/projects/laravel-promise/).
 
 ### User Model
 
 Next, use the `HasRole` trait in your existing `User` model. For example:
 
 ~~~php
-<?php
+<?php namespace App;
 
 use Torann\Promise\HasRole;
 
-class User extends Eloquent {
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+
+class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
+	
+	use Authenticatable, CanResetPassword;
 
     use HasRole; // Add this trait to your user model
     
@@ -111,6 +120,10 @@ $role->permissions()->sync(array(:permission_id, :permission_id));
 ~~~
 
 ## Change Log
+
+#### v0.2.0
+
+- Upgrade to Laravel 5
 
 #### v0.1.0
 

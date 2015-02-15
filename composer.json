@@ -1,7 +1,7 @@
 {
     "name": "torann/promise",
-    "description": "Simple Roles and Permissions for Laravel 4.",
-    "keywords": ["laravel", "promise", "roles", "permissions", "group", "user"],
+    "description": "Simple Roles and Permissions for Laravel 5.",
+    "keywords": ["laravel", "laravel 5", "promise", "roles", "permissions", "group", "user"],
 	"license": "BSD 2-Clause",
     "authors": [
         {
@@ -11,15 +11,15 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "illuminate/support": "~4.1"
+        "illuminate/support": "~5.0"
     },
     "require-dev": {
-        "illuminate/database": "~4.1",
+        "illuminate/database": "~5.0",
         "mockery/mockery": "0.7.2"
     },
     "autoload": {
-        "psr-0": {
-            "Torann\\Promise": "src/"
+        "psr-4": {
+            "Torann\\Promise\\": "src/Torann/Promise"
         },
         "files": [
             "src/helpers.php"
@@ -27,8 +27,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "0.1-dev"
+            "dev-master": "0.2-dev"
         }
-    },
-    "minimum-stability": "dev"
+    }
 }

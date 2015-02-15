@@ -1,6 +1,7 @@
 <?php namespace Torann\Promise;
 
 use Config;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 trait HasRole
 {
@@ -20,10 +21,12 @@ trait HasRole
     /**
      * Assign a user to a given role.
      *
-     * @param name The name of the role.
-     * @return Role
+     * @param  string $name The name of the role.
+     *
+     * @return \Torann\Promise\Models\Role
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
-    public function assignRole( $name )
+    public function assignRole($name)
     {
         $role = \Torann\Promise\Models\Role::whereName($name)->first();
 
@@ -35,10 +38,12 @@ trait HasRole
     /**
      * Revoke a role from the user.
      *
-     * @param name The name of the role.
+     * @param  string $name The name of the role.
+     *
      * @return int
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
-    public function revokeRole( $name )
+    public function revokeRole($name)
     {
         $role = \Torann\Promise\Models\Role::whereName($name)->first();
 
@@ -54,14 +59,14 @@ trait HasRole
      * @param  bool    $ignoreSuperAdmin  Allows for ignoring the super admin setting.
      * @return bool
      */
-    public function hasRole( $name, $ignoreSuperAdmin = false )
+    public function hasRole($name, $ignoreSuperAdmin = false)
     {
         $roles = explode(',', strtolower($name) );
 
         foreach ($this->roles as $role)
         {
             // Return true for super admin
-            if ($ignoreSuperAdmin === false && $role->name === Config::get('promise::super_admin')) {
+            if ($ignoreSuperAdmin === false && $role->name === Config::get('promise.super_admin')) {
                 return true;
             }
 
@@ -77,22 +82,22 @@ trait HasRole
     /**
      * Check if user has a permission by its name
      *
-     * @param  string  $permission        Permission string.
+     * @param  string  $name              Permission string.
      * @param  bool    $ignoreSuperAdmin  Allows for ignoring the super admin setting.
      * @return boolean
      */
-    public function can( $name, $ignoreSuperAdmin = false )
+    public function can($name, $ignoreSuperAdmin = false)
     {
         $names = explode(',', strtolower($name) );
 
         foreach ($this->roles as $role)
         {
             // Return true for super admin
-            if ($ignoreSuperAdmin === false && $role->name === Config::get('promise::super_admin')) {
+            if ($ignoreSuperAdmin === false && $role->name === Config::get('promise.super_admin')) {
                 return true;
             }
 
-            // Check permissionss
+            // Check permissions
             foreach ($role->permissions as $permission)
             {
                 if (in_array($permission->name, $names)) {

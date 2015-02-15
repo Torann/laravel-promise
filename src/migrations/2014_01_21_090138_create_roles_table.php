@@ -15,9 +15,20 @@ class CreateRolesTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('name', 50);
-			$table->text('description')->nullable();
+			$table->string('description', 255)->nullable();
+            $table->boolean('default')->default(false);
 			$table->timestamps();
 		});
+
+        DB::table('roles')->insert(array(
+            array(
+                'name' => \Config::get('promise.super_admin'),
+                'description' => 'Super Admin',
+                'default'    => false,
+                'created_at' => '2014-01-21 09:01:38',
+                'updated_at' => '2014-01-21 09:01:38'
+            )
+        ));
 	}
 
 	/**
