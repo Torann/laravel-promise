@@ -2,7 +2,7 @@
     "name": "torann/promise",
     "description": "Simple Roles and Permissions for Laravel 5.",
     "keywords": ["laravel", "laravel 5", "promise", "roles", "permissions", "group", "user"],
-	"license": "BSD 2-Clause",
+	"license": "BSD-2-Clause",
     "authors": [
         {
             "name": "Daniel Stainback",
